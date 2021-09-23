@@ -5,20 +5,30 @@ export const styles = StyleSheet.create({
   container: {
     flex: 1,
     marginTop: 100,
-    marginHorizontal: 20
-  },
-  userProfile: {
-    borderWidth: 3,
-    borderRadius: 8,
-    padding: 10,
+    marginHorizontal: 20,
+    paddingHorizontal: 10,
     borderColor: theme.colors.secondary50,
     backgroundColor: theme.colors.secondary40,
+    borderWidth: 3,
+    borderRadius: 8
   },
   userProfileAvatar: {
-    height: 40,
-    width: 40,
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 30,
+    marginTop: 20
   },
-  userProfileBox: {},
+  thumbInformation: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+  },
+  contentBox: {
+    width: '50%',
+    marginBottom: 10
+  },
+  userProfileBox: {
+    width: 300
+  },
   userProfileTitle: {
     color: theme.colors.discord,
     fontFamily: theme.fonts.text500,
@@ -27,6 +37,7 @@ export const styles = StyleSheet.create({
   userProfileText: {
     color: theme.colors.heading,
     fontFamily: theme.fonts.text500,
-    fontSize: 14
+    fontSize: 14,
+    flexShrink: 1
   },
 })
