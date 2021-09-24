@@ -16,18 +16,7 @@ export function Home() {
   const navigation = useNavigation();
 
   function handleClickSearch() {
-    handleSearchUser(nick);
-    if (nick.length <= 3 && nick != '') {
-      showMessage({
-        message: "Insira um usuário válido.",
-        type: "danger",
-        statusBarHeight: 20,
-        titleStyle: {
-          fontSize: 17
-        }
-      });
-      setNick('');
-    } else if (nick == '') {
+    if (nick == '') {
       showMessage({
         message: "Preencha o campo abaixo.",
         type: "danger",
@@ -36,7 +25,9 @@ export function Home() {
           fontSize: 17
         }
       });
+      return;
     }
+    handleSearchUser(nick);
   }
 
   useEffect(() => {
