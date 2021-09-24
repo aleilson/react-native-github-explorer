@@ -4,10 +4,10 @@ import { View, Text } from 'react-native';
 import { styles } from './styles';
 
 type userContent = {
-  email: string | undefined;
-  location: string | undefined;
-  followers: number | undefined;
-  following: number | undefined;
+  email: string;
+  location?: string;
+  followers: number;
+  following: number;
 }
 
 export function UserContent({ email, location, followers, following }: userContent) {

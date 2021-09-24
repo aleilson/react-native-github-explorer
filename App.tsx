@@ -9,6 +9,7 @@ import { Rajdhani_500Medium, Rajdhani_700Bold } from '@expo-google-fonts/rajdhan
 import { Routes } from './src/routes';
 import { Background } from './src/components/Background';
 import { UserContextProvider } from './src/contexts/userContext';
+import FlashMessage from 'react-native-flash-message';
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -23,15 +24,19 @@ export default function App() {
   }
 
   return (
-    <Background >
-      <StatusBar
-        barStyle="light-content"
-        backgroundColor="transparent"
-        translucent
-      />
-      <UserContextProvider>
-        <Routes />
-      </UserContextProvider>
-    </Background>
+    <>
+      <Background >
+        <StatusBar
+          barStyle="light-content"
+          backgroundColor="transparent"
+          translucent
+        />
+        <UserContextProvider>
+          <Routes />
+        </UserContextProvider>
+
+      </Background>
+      <FlashMessage position="top" />
+    </>
   );
 }

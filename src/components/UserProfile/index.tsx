@@ -5,9 +5,9 @@ import { styles } from './styles';
 import { Avatar } from '../Avatar';
 
 type ProfieProps = {
-  avatar: string | undefined;
-  username: string | undefined;
-  bio: string | undefined;
+  avatar: string;
+  username: string;
+  bio?: string;
 }
 
 export function UserProfile({ avatar, username, bio }: ProfieProps) {

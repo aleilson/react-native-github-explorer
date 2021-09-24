@@ -4,6 +4,7 @@ import React,
   ReactNode,
   useState,
 } from 'react';
+import { showMessage } from 'react-native-flash-message';
 
 import { api } from '../services/api';
 
@@ -12,16 +13,16 @@ type User = {
   username: string;
   avatar: string;
   bio?: string;
-  location?: string
+  location?: string;
   email: string;
   followers: number,
   following: number
 }
 
 type UserContexType = {
-  user: User | undefined;
+  user: User;
   loading: boolean;
-  handleSearchUser:  (event: any) => void;
+  handleSearchUser:  (event: any) => Promise<void>;
 }
 
 type UserContextProps = {
@@ -34,11 +35,11 @@ export function UserContextProvider({ children }: UserContextProps) {
   const [user, setUser] = useState<User>({} as User);
   const [loading, setLoading] = useState(false);
 
-  function handleSearchUser(nameUser: string) {
+  async function handleSearchUser(nameUser: string) {
     try {
       setLoading(true);
 
-      api.get(nameUser).then(response => {
+      await api.get(nameUser).then(response => {
         const { id, name, avatar_url, bio, email, followers, following, location } = response.data;
 
         setUser({
@@ -51,8 +52,20 @@ export function UserContextProvider({ children }: UserContextProps) {
           bio: bio,
           location: location
         });
+      }).catch((error) => {
+        if (error.response.status == 404) {
+          setUser({} as User);
+          showMessage({
+            message: "Usuário não encontrado, tente novamente.",
+            type: "danger",
+            statusBarHeight: 20,
+            titleStyle: {
+              fontSize: 17
+            }
+          });
+        }
       });
-    } catch {
+    } catch(error) {
       throw new Error('Não foi possível encontrar o usuário!');
     } finally {
       setLoading(false);

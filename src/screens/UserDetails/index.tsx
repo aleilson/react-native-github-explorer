@@ -12,15 +12,15 @@ export function UserDetails() {
   return (
     <ScrollView style={styles.container}>
       <UserProfile
-        avatar={user?.avatar}
+        avatar={user.avatar}
         username={user?.username}
-        bio={user?.bio}
+        bio={user.bio}
       />
       <UserContent 
-        email={user?.email}
-        location={user?.location}
-        followers={user?.followers}
-        following={user?.following}
+        email={user.email}
+        location={user.location}
+        followers={user.followers}
+        following={user.following}
       />
     </ScrollView>
   )

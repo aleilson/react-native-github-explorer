@@ -6,7 +6,7 @@ import { styles } from './styles';
 import { theme } from '../../global/styles/theme';
 
 type ImageProps = {
-  urlImage: string | undefined;
+  urlImage: string;
 }
 
 export function Avatar({ urlImage }: ImageProps) {

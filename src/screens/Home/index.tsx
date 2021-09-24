@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Image, View } from 'react-native';
 import { Search } from '../../components/Search';
-import FlashMessage, { showMessage } from "react-native-flash-message";
+import { showMessage } from "react-native-flash-message";
 import { useNavigation } from '@react-navigation/core';
 
 import { styles } from './styles';
@@ -37,17 +37,9 @@ export function Home() {
       });
     } else {
       handleSearchUser(nick);
-
-      user?.id != ('788178' || null) 
-      ? navigation.navigate('UserDetails') 
-      : showMessage({
-        message: "Usuário não encontrand, tente novamente.",
-        type: "danger",
-        statusBarHeight: 20,
-        titleStyle: {
-          fontSize: 17
-        }
-      });
+      if (user.id !== (null || undefined)) {
+        navigation.navigate('UserDetails')
+      }
     }
   }
 
@@ -71,7 +63,6 @@ export function Home() {
           onPress={handleClickSearch}
         />
       </View>
-      <FlashMessage position="top" />
     </>
   )
 }
