@@ -15,9 +15,8 @@ export function Home() {
   const [nick, setNick] = useState('');
   const navigation = useNavigation();
 
-  async function handleClickSearch() {
-    await handleSearchUser(nick);
-
+  function handleClickSearch() {
+    handleSearchUser(nick);
     if (nick.length <= 3 && nick != '') {
       showMessage({
         message: "Insira um usuário válido.",
@@ -41,7 +40,8 @@ export function Home() {
   }
 
   useEffect(() => {
-    user.id && navigation.navigate('UserDetails')
+    user.id && navigation.navigate('UserDetails');
+    setNick('');
   }, [user.id])
 
   return (
