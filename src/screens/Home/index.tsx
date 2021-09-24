@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Image, View } from 'react-native';
 import { Search } from '../../components/Search';
 import { showMessage } from "react-native-flash-message";
@@ -15,7 +15,9 @@ export function Home() {
   const [nick, setNick] = useState('');
   const navigation = useNavigation();
 
-  function handleClickSearch() {
+  async function handleClickSearch() {
+    await handleSearchUser(nick);
+
     if (nick.length <= 3 && nick != '') {
       showMessage({
         message: "Insira um usuário válido.",
@@ -35,13 +37,12 @@ export function Home() {
           fontSize: 17
         }
       });
-    } else {
-      handleSearchUser(nick);
-      if (user.id !== (null || undefined)) {
-        navigation.navigate('UserDetails')
-      }
     }
   }
+
+  useEffect(() => {
+    user.id && navigation.navigate('UserDetails')
+  }, [user.id])
 
   return (
     <>
