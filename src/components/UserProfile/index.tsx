@@ -10,7 +10,7 @@ type ProfieProps = {
   bio: string | undefined;
 }
 
-export function ProfileAvatar({ avatar, username, bio }: ProfieProps) {
+export function UserProfile({ avatar, username, bio }: ProfieProps) {
   return (
     <View style={styles.userProfileAvatar}>
       <Avatar urlImage={avatar} />

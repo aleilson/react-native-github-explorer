@@ -1,6 +1,6 @@
 import React from 'react';
 import { ScrollView } from 'react-native-gesture-handler';
-import { ProfileAvatar } from '../../components/ProfileAvatar';
+import { UserProfile } from '../../components/UserProfile';
 import { UserContent } from '../../components/UserContent';
 import { useHero } from '../../hooks/useUser';
 
@@ -11,7 +11,7 @@ export function UserDetails() {
 
   return (
     <ScrollView style={styles.container}>
-      <ProfileAvatar
+      <UserProfile
         avatar={user?.avatar}
         username={user?.username}
         bio={user?.bio}
