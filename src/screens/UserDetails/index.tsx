@@ -2,26 +2,39 @@ import React from 'react';
 import { ScrollView } from 'react-native-gesture-handler';
 import { UserProfile } from '../../components/UserProfile';
 import { UserContent } from '../../components/UserContent';
-import { useHero } from '../../hooks/useUser';
+import { useUser } from '../../hooks/useUser';
 
 import { styles } from './styles';
+import { Loading } from '../../components/Loading';
+import { Header } from '../../components/Header';
 
 export function UserDetails() {
-  const { user } = useHero();
+  const { user, loading } = useUser();
 
   return (
-    <ScrollView style={styles.container}>
-      <UserProfile
-        avatar={user.avatar}
-        username={user?.username}
-        bio={user.bio}
+    <>
+      <Header
+        title='Detalhes do usuário'
       />
-      <UserContent 
-        email={user.email}
-        location={user.location}
-        followers={user.followers}
-        following={user.following}
-      />
-    </ScrollView>
+
+      {
+        loading ? <Loading />
+        : 
+        <ScrollView style={styles.container}>
+
+          <UserProfile
+            avatar={user.avatar}
+            username={user?.username}
+            bio={user.bio}
+          />
+          <UserContent 
+            email={user.email}
+            location={user.location}
+            followers={user.followers}
+            following={user.following}
+          />
+        </ScrollView>
+      }
+    </>
   )
 }

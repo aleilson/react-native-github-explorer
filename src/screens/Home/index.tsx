@@ -8,10 +8,10 @@ import { styles } from './styles';
 
 import logGithub from '../../assets/logo.png';
 import { Button } from '../../components/Button';
-import { useHero } from '../../hooks/useUser';
+import { useUser } from '../../hooks/useUser';
 
 export function Home() {
-  const { handleSearchUser, user } = useHero();
+  const { handleSearchUser, user } = useUser();
   const [nick, setNick] = useState('');
   const navigation = useNavigation();
 
@@ -46,7 +46,6 @@ export function Home() {
   return (
     <>
       <View style={styles.container}>
-
         <View  style={styles.contentSearch}>
           <Image
             source={logGithub}

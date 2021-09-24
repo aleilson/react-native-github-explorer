@@ -5,10 +5,11 @@ import React,
   useState,
 } from 'react';
 import { showMessage } from 'react-native-flash-message';
+import { Loading } from '../components/Loading';
 
 import { api } from '../services/api';
 
-type User = {
+export type User = {
   id: string;
   username: string;
   avatar: string;
@@ -23,6 +24,7 @@ type UserContexType = {
   user: User;
   loading: boolean;
   handleSearchUser:  (event: any) => Promise<void>;
+  setUser: (event: User) => void;
 }
 
 type UserContextProps = {
@@ -73,7 +75,7 @@ export function UserContextProvider({ children }: UserContextProps) {
   }
 
   return (
-    <userContext.Provider value={{ user, loading, handleSearchUser }}>
+    <userContext.Provider value={{ user, setUser, loading, handleSearchUser }}>
       {children}
     </userContext.Provider>
   )
